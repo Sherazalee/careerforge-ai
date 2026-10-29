@@ -9,7 +9,11 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@google/genai": "^2.32.0",
+    "@sparticuz/chromium-min": "^153.0.0",
+    "lucide-react": "^1.64.0",
     "next": "16.4.3",
+    "puppeteer-core": "^25.16.0",
     "react": "19.3.0",
     "react-dom": "19.3.0"
   },

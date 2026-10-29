@@ -1,26 +1,167 @@
+
 @import "tailwindcss";
 
+/* ========================================
+   CAREERFORGE AI - GLOBAL STYLES
+======================================== */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f7f5f0;
+  --foreground: #25252b;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: Arial, Helvetica, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
+  margin: 0;
+  padding: 0;
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+/* ========================================
+   RESUME TEMPLATE STYLING
+======================================== */
+
+.resume-document {
+  width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.resume-executive .resume-heading {
+  color: #242424;
+  border-bottom: 1px solid #d5d5d5;
+  padding-bottom: 7px;
+}
+
+.resume-atelier .resume-heading {
+  color: #8d7158;
+  border-bottom: 1px solid #d8cabb;
+  padding-bottom: 7px;
+}
+
+.resume-signature .resume-heading {
+  color: #987b4c;
+  border-bottom: 1px solid #ebe6dd;
+  padding-bottom: 7px;
+}
+
+.resume-minimal .resume-heading {
+  color: #49364b;
+}
+
+.resume-skill {
+  display: inline-block;
+  font-size: 10px;
+  line-height: 1.6;
+  padding: 4px 9px;
+  border-radius: 5px;
+  background: #f0eeea;
+  color: #413e3a;
+}
+
+.resume-atelier .resume-skill {
+  background: #eae0d3;
+}
+
+.resume-section {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+/* ========================================
+   HIDE PRINT-ONLY RESUME ON SCREEN
+======================================== */
+
+.print-only-resume {
+  display: none;
+}
+
+/* ========================================
+   PDF PRINT SETTINGS
+======================================== */
+
+@page {
+  size: A4;
+  margin: 12mm;
+}
+
+@media print {
+
+  html,
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: white !important;
+    color: #25252b !important;
+  }
+
+  /* Hide all dashboard sections */
+  main > :not(.print-only-resume) {
+    display: none !important;
+  }
+
+  /* Hide regular website UI */
+  .no-print {
+    display: none !important;
+  }
+
+  /* Display dedicated printable resume */
+  .print-only-resume {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: white !important;
+  }
+
+  /* Resume document formatting */
+  .print-only-resume .resume-document {
+    width: 100% !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    overflow: visible !important;
+
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  /* Prevent sections splitting awkwardly */
+  .print-only-resume .resume-section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Preserve template background colours */
+  .print-only-resume .resume-sidebar {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
 }
